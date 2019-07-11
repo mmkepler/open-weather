@@ -1,0 +1,140 @@
+/*-----------Main-----------*/
+
+#main-bg {
+  min-height: 100vh;
+  color: white;
+  padding: 0;
+  background: url('../../img/hohenschwangau-bg.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.row, .col-md-6 .col-sm-12 {
+  padding: 0;
+  margin: 0;
+}
+
+/*-----------Header-----------*/
+
+.header {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-bottom: solid 2px #009799;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, .2);
+}
+
+#logo-icon {
+  font-size: 1.2em;
+  color: #009799;
+}
+#logo-text {
+  font-size: 1.8em;
+  margin-bottom: 0;
+  color: #009799;
+}
+
+#nav-container {
+  padding: 0;
+  margin: 0;
+}
+
+#search-btn {
+  background-color: #009799;
+  color: white;
+  border-radius: 0 4px 4px 0;
+}
+
+#input {
+ max-width: 260px;
+ margin-top: 6px;
+}
+
+.navbar {
+  padding: 0;
+  margin: 0;
+}
+
+/*-----------Footer-----------*/
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  border-top: 2px solid #009799;
+  box-shadow: 0 -1px 4px 1px rgba(0, 0, 0, .2);
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+#footer-link {
+  margin-top: 14px;
+}
+
+#footer-link > a {
+  font-size: 1.2em;
+  color: #009799;
+}
+
+/*-----------Card Content-----------*/
+#current {
+  color: white;
+  background: rgba(0, 151, 153, .8);
+  margin-top: 20px;
+  border-radius: 2px;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: 1px 1px 12px 1px rgba(0, 0, 0, .3);
+}
+
+#unit-f {
+  background-color: none;
+  font-size: 1em;
+}
+
+#unit-c {
+  background-color: none;
+  font-size: 1em;
+}
+
+#weather-icon {
+  font-size: 2em;
+}
+
+#date {
+  font-size: 14px;
+}
+
+#city {
+  margin-bottom: 0;
+}
+
+#weather-text {
+  margin-bottom: 10px;
+}
+
+#current-temp {
+  font-size: 3.4em;
+}
+
+#low-high {
+  font-size: 14px;
+  color: white;
+}
+ 
+#low-temp {
+  border-bottom: 1px solid rgba(255, 255, 255, .3);
+}
+#low-temp-text {
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+#details-seperator {
+  border: 1px ridge rgba(255, 255, 255, .3);
+  margin:  12px 0 0 0;
+  padding: 0;
+}
+
+.weather-row {
+  margin-bottom: 20px;
+}

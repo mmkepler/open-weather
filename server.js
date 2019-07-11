@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
-//let weather_url = `http://api.openweathermap.org/data/2.5/forecast??lat=${lat}&lon=${lon}&APPID=${process.env.WEATHER_KEY}&mode=json`;
+//let weather_url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${process.env.WEATHER_KEY}&mode=json`;
 
 app.post('/api/find', (req, res) => {
   console.log(req.body);
