@@ -1,0 +1,1 @@
+export const WEATHER_UPDATE = {type: 'WEATHER_UPDATE'};

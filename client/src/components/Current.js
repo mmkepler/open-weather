@@ -1,30 +1,29 @@
 import React from 'react';
 
-
 export default class Current extends React.Component {
   render = () => (
     <div className='d-flex justify-content-center'>
       <div className="card d-flex justify-content-center" id='current'>
         <div className="card-body">
-          <h1 className='card-title' id='city'>Columbus</h1>
-          <p id='date'>07/10/2019</p>
+          <h1 className='card-title' id='city'>{this.props.city}</h1>
+          <p id='date'>{this.props.datetime}</p>
           <br></br>
           <div id='weather-text'>
-          <p><i className="wi wi-day-sleet-storm" id='weather-icon'></i>&nbsp;&nbsp;Weather</p>
+          <p><i className="wi wi-day-sleet-storm" id='weather-icon'></i>&nbsp;&nbsp;{this.props.weather}</p>
           </div>
           <div className='row'>
             <div className='col-8 d-flex justify-content-end'>
-              <p id='current-temp' className='d-flex justify-content-end'>73&#176;</p>
+              <p id='current-temp' className='d-flex justify-content-end'>{this.props.currenttemp} &#176;</p>
             </div>
             <div className='col-4' id='low-high'>
               <div className='row'>
                 <div id='low-temp'>
-                  <p id='low-temp-text'>62&#8457;</p>
+                  <p id='low-temp-text'>{this.props.lowtemp}&#8457;</p>
                 </div>
               </div>
               <div className='row'>
                 <div id='high-temp'>
-                  <p>89&#8457;</p>
+                  <p>{this.props.hightemp}&#8457;</p>
                 </div>
               </div>  
             </div>
@@ -57,7 +56,7 @@ export default class Current extends React.Component {
                         <td>Wind</td>
                       </tr>
                       <tr>
-                        <td>4 mph</td>
+                        <td>{this.props.wind} mph</td>
                       </tr>
                     </tbody>
                   </table>
@@ -76,7 +75,7 @@ export default class Current extends React.Component {
                       <td>Humidity</td>
                       </tr>
                       <tr>
-                      <td>{} %</td>
+                      <td>{this.props.humidity} %</td>
                       </tr>
                     </tbody>
                   </table>
@@ -98,7 +97,7 @@ export default class Current extends React.Component {
                       <td>Pressure</td>
                       </tr>
                       <tr>
-                      <td>4 mph</td>
+                      <td>{this.props.pressure} in</td>
                       </tr>
                     </tbody>
                   </table>
@@ -117,7 +116,7 @@ export default class Current extends React.Component {
                       <td>Visibility</td>
                       </tr>
                       <tr>
-                      <td>4 mph</td>
+                      <td>{this.props.visibility} mi</td>
                       </tr>
                     </tbody>
                   </table>
@@ -139,7 +138,7 @@ export default class Current extends React.Component {
                       <td>Sunrise</td>
                       </tr>
                       <tr>
-                      <td>4 mph</td>
+                      <td>{this.props.sunrise}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -158,7 +157,7 @@ export default class Current extends React.Component {
                       <td>Sunset</td>
                       </tr>
                       <tr>
-                      <td>4 mph</td>
+                      <td>{this.props.sunset}</td>
                       </tr>
                     </tbody>
                   </table>
