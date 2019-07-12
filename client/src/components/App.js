@@ -7,9 +7,9 @@ import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { WEATHER_UPDATE } from '../actions/weatherActions';
+import { WEATHER_UPDATE, INPUT_UPDATE, SUBMIT_CLEAR, SEARCH_ERROR } from '../actions/weatherActions';
 
-
+  
 const mapStateToProps = state => {
   return {
     city: state.weatherReducer.city,
@@ -24,37 +24,64 @@ const mapStateToProps = state => {
     pressure: state.weatherReducer.pressure,
     visibility: state.weatherReducer.visibility,
     sunrise: state.weatherReducer.sunrise,
-    sunset: state.weatherReducer.sunset
+    sunset: state.weatherReducer.sunset,
+    input: state.inputReducer.input,
+    error: state.inputReducer.error
   }
 };
 
 const mapDispatchToProps = dispatch => ({
   loadData: (data) => {
     dispatch({type: WEATHER_UPDATE, payload: data})
+  },
+  onKeyup: (info) => {
+    dispatch({type: INPUT_UPDATE, payload: info})
+  },
+  submitClear: () => {
+    dispatch({type: SUBMIT_CLEAR})
+  },
+  flagError: (bool) => {
+    dispatch({type: SEARCH_ERROR, payload: bool});
   }
 });
 
 
  class App extends React.Component {
 
-  componentWillMount() {
+  /*handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('/api/search', {city: e.target.value})
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.log('handle submit error ', err))
+  };*/
 
-    navigator.geolocation.getCurrentPosition(position => {
-      
-        
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition(position => { 
       axios.post('/api/find', {lat: position.coords.latitude, lon: position.coords.longitude})
       .then(res => {
         this.props.loadData(res.data);
         console.log(this.props);
       });
-    
-  
-      });
+    });
   }
 
   render = () => (
     <div className="container-fluid" id="main-bg">
-      <Header />
+      <Header
+        input={this.props.input}
+        onKeyup={this.props.onKeyup}
+        submitClear={this.props.submitClear}
+        loadData={this.props.loadData}
+        flagError={this.props.flagError}
+      />
+      { this.props.error ? 
+        (<div id='alert'>
+        <p>City entered does not exist. Please try again</p>
+        </div>) : null
+      }
+      
       <Current 
         city={this.props.city}
         datetime={this.props.datetime}

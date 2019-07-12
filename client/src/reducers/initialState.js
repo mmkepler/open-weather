@@ -11,7 +11,9 @@ const initialState = {
   'pressure': null,
   'visibility': null,
   'sunrise': null,
-  'sunset': null
+  'sunset': null,
+  'input': '',
+  'error': false
 };
 
 export default initialState;

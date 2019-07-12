@@ -17,8 +17,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "client", "build")));
 
 
-
-
 const utcConvertor = (utc, offset, type) => {
   let tempDate;
   if(Math.sign(offset) === -1){
@@ -53,10 +51,10 @@ const utcConvertor = (utc, offset, type) => {
 
   if(type === 'dt'){
     var dateTime = month + '/' + day + '/' + year + ' ' + tempHours + ':' + minutes + ' ' + end;
-    console.log('hours at time ', tempHours);
+    //console.log('hours at time ', tempHours);
     return dateTime;
   } else {
-    console.log('hours at sun', tempHours)
+    //console.log('hours at sun', tempHours)
     var sunTime = tempHours + ':' + minutes + ' ' + end;
     return sunTime;
   }
@@ -120,15 +118,39 @@ const formatData = (weatherData) => {
   weatherObj.sunrise = utcConvertor(weatherData.sys.sunrise, weatherData.timezone, suntype);
   weatherObj.sunset = utcConvertor(weatherData.sys.sunset, weatherData.timezone, suntype);
 
-  console.log("weather Obj", weatherObj);
+  //console.log("weather Obj", weatherObj);
   return weatherObj;
 }
 
 
-
+/*Routes */
 
 app.post ('/api/search' , (req, res) => {
-  console.log('search ', req.body);
+  let tempCity = req.body.city;
+  let zip = /^\d{5}$|^\d{5}-\d{4}$/;
+  let cityUrl;
+
+  if(tempCity.match(zip)){
+    console.log('matches');
+    city_url = `http://api.openweathermap.org/data/2.5/weather?zip=${tempCity}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
+  } else {
+    tempCity = tempCity.trim();
+    city_url = `http://api.openweathermap.org/data/2.5/weather?q=${tempCity}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`
+  }
+  
+  axios.get(city_url)
+  .then(res => {
+    let searchObj = formatData(res.data);
+    return searchObj;
+  })
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    console.log('search error ', err);
+    res.send('error');
+  });
+  
 });
 
 app.post('/api/find', (req, res) => {
