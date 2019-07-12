@@ -8,7 +8,7 @@ const weatherReducer = (state = initialState, action) => {
       return {
         ...state,
         city: action.payload.city,
-        dateTime: action.payload.datetime,
+        datetime: action.payload.datetime,
         currenttemp: action.payload.currenttemp,
         lowtemp: action.payload.lowtemp,
         hightemp: action.payload.hightemp,

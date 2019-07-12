@@ -138,3 +138,7 @@ footer {
 .weather-row {
   margin-bottom: 20px;
 }
+
+#weather {
+  font-size: 1.4em;
+}

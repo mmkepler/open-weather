@@ -9,7 +9,7 @@ export default class Current extends React.Component {
           <p id='date'>{this.props.datetime}</p>
           <br></br>
           <div id='weather-text'>
-          <p><i className="wi wi-day-sleet-storm" id='weather-icon'></i>&nbsp;&nbsp;{this.props.weather}</p>
+          <p id='weather'><i className={this.props.icon} id='weather-icon'></i>&nbsp;&nbsp;{this.props.weather}</p>
           </div>
           <div className='row'>
             <div className='col-8 d-flex justify-content-end'>

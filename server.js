@@ -4,9 +4,12 @@ const axios = require('axios');
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
+const iconConversion = require('./helpers/iconConversion');
 const app = express();
 let dttype = 'dt';
 let suntype = 'sun';
+
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,6 +33,7 @@ const utcConvertor = (utc, offset, type) => {
   var hours = date.getHours();
   var minutes = date.getMinutes();
   var end = '';
+  var tempHours;
   //console.log('hours ', hours);
   
   if(minutes < 10){
@@ -37,19 +41,23 @@ const utcConvertor = (utc, offset, type) => {
   }
 
   if(hours > 12){
-    hours = hours - 12;
+    tempHours = hours - 12;
     end = 'pm';
+  } else if (hours === 12){
+    end = 'pm';
+    tempHours = hours;
   } else {
     end = 'am';
+    tempHours = hours
   }
 
   if(type === 'dt'){
-    var dateTime = month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ' ' + end;
-    //console.log('hours at time ', hours);
+    var dateTime = month + '/' + day + '/' + year + ' ' + tempHours + ':' + minutes + ' ' + end;
+    console.log('hours at time ', tempHours);
     return dateTime;
   } else {
-    //console.log('hours at sun', hours)
-    var sunTime = hours + ':' + minutes + ' ' + end;
+    console.log('hours at sun', tempHours)
+    var sunTime = tempHours + ':' + minutes + ' ' + end;
     return sunTime;
   }
 };
@@ -67,8 +75,21 @@ const distanceConvertor = (dist) => {
 
 };
 
+const findIcon = (data) => {
+  let tempIcon;
+  let tempData = data.toString();
+  
+  if(iconConversion.hasOwnProperty(tempData)){
+    tempIcon = iconConversion[tempData];
+    return tempIcon;
+  } else {
+    tempIcon = 'wi wi-alien';
+    return tempIcon;
+  }
+};
+
 const formatData = (weatherData) => {
-  //console.log(weatherData);
+  
   let weatherObj = {
     'city': null,
     'datetime': null,
@@ -90,7 +111,7 @@ const formatData = (weatherData) => {
   weatherObj.currenttemp = Math.trunc(weatherData.main.temp);
   weatherObj.lowtemp = Math.trunc(weatherData.main.temp_min);
   weatherObj.hightemp = Math.trunc(weatherData.main.temp_max);
-  weatherObj.icon = weatherData.weather[0].icon;
+  weatherObj.icon = findIcon(weatherData.weather[0].id);
   weatherObj.weather = weatherData.weather[0].main;
   weatherObj.wind = weatherData.wind.speed;
   weatherObj.humidity = weatherData.main.humidity;
@@ -99,7 +120,7 @@ const formatData = (weatherData) => {
   weatherObj.sunrise = utcConvertor(weatherData.sys.sunrise, weatherData.timezone, suntype);
   weatherObj.sunset = utcConvertor(weatherData.sys.sunset, weatherData.timezone, suntype);
 
-  console.log(weatherObj);
+  console.log("weather Obj", weatherObj);
   return weatherObj;
 }
 
@@ -114,7 +135,7 @@ app.post('/api/find', (req, res) => {
   var lat = req.body.lat;
   var lon = req.body.lon;
   const weather_url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
-  
+  //console.log(weather_url);
   axios.get(weather_url)
   .then(res => {
     var obj = formatData(res.data);

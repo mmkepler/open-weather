@@ -45,6 +45,7 @@ const mapDispatchToProps = dispatch => ({
       axios.post('/api/find', {lat: position.coords.latitude, lon: position.coords.longitude})
       .then(res => {
         this.props.loadData(res.data);
+        console.log(this.props);
       });
     
   
