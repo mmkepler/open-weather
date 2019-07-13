@@ -48,15 +48,6 @@ const mapDispatchToProps = dispatch => ({
 
  class App extends React.Component {
 
-  /*handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('/api/search', {city: e.target.value})
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => console.log('handle submit error ', err))
-  };*/
-
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(position => { 
       axios.post('/api/find', {lat: position.coords.latitude, lon: position.coords.longitude})

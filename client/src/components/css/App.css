@@ -6,6 +6,7 @@
   padding: 0;
   background: url('../../img/hohenschwangau-bg.jpg') no-repeat center;
   background-size: cover;
+  padding-bottom: 80px;
 }
 
 .row, .col-md-6 .col-sm-12 {
@@ -64,6 +65,10 @@
 .navbar {
   padding: 0;
   margin: 0;
+}
+
+#search-input {
+  padding-left: 10px;
 }
 
 /*-----------Footer-----------*/

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+
 export default class Header extends React.Component {
 
    handleSubmit = (e) => {
@@ -31,9 +32,9 @@ export default class Header extends React.Component {
             <div className='col-md-6 col-sm-12'>
               <form className="form-inline d-flex justify-content-center" onSubmit={e => this.handleSubmit(e)}>
                 <div className='input-group' id='input'>
-                <input placeholder="Search" aria-label="Search" 
+                <input placeholder="City or Zipcode" aria-label="Search" 
                 onChange={ e => this.props.onKeyup(e)} 
-                value={this.props.input} required/>
+                value={this.props.input} id='search-input' required/>
                   <button className='btn'  id='search-btn' type="submit" >Search</button>
                 </div>
               </form>
