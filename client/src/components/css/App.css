@@ -6,6 +6,7 @@
   padding: 0;
   background: url('../../img/hohenschwangau-bg.jpg') no-repeat center;
   background-size: cover;
+  background-attachment: fixed;
   padding-bottom: 80px;
 }
 
@@ -93,7 +94,9 @@ footer {
 }
 
 /*-----------Card Content-----------*/
-#current {
+#current,
+#details,
+#forecast {
   color: white;
   background: rgba(0, 151, 153, .8);
   margin-top: 20px;
@@ -101,6 +104,10 @@ footer {
   min-width: 300px;
   text-align: center;
   box-shadow: 1px 1px 12px 1px rgba(0, 0, 0, .3);
+}
+
+#forecast {
+  margin-bottom: 80px;
 }
 
 #unit-f {
@@ -113,7 +120,7 @@ footer {
   font-size: 1em;
 }
 
-#weather-icon {
+.weather-icon {
   font-size: 2em;
 }
 
@@ -147,7 +154,7 @@ footer {
   margin-top: 20px;
 }
 
-#details-seperator {
+.details-seperator {
   border: 1px ridge rgba(255, 255, 255, .3);
   margin:  12px 0 0 0;
   padding: 0;
@@ -159,4 +166,50 @@ footer {
 
 #weather {
   font-size: 1.4em;
+}
+
+.toggle-button {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.details-data {
+  margin-bottom: 0;
+}
+
+.slot {
+  border-bottom: 1px solid rgba(255, 255, 255, .3);
+  padding-top: 12px;
+}
+
+.forecast-temp {
+  padding-top: 12px;
+}
+
+.forecast-icon {
+  padding-top: 8px;
+}
+
+p.forecast-temp {
+  margin-bottom: 0;
+}
+
+
+/*-----------Spinner-----------*/
+
+#notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 150px;
+  background: rgba(0, 151, 153, .8);
+}
+
+.spin {
+  color: black;
+  padding: 25px;
 }

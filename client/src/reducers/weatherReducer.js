@@ -1,4 +1,4 @@
-import { WEATHER_UPDATE } from '../actions/weatherActions';
+import { WEATHER_UPDATE, DETAILS_TOGGLE, FORECAST_TOGGLE, LOADING} from '../actions/weatherActions';
 import initialState from './initialState';
 
 
@@ -21,7 +21,24 @@ const weatherReducer = (state = initialState, action) => {
         sunrise: action.payload.sunrise,
         sunset: action.payload.sunset
       }
-      
+    }
+    case DETAILS_TOGGLE : {
+      return {
+        ...state,
+      detailsToggle: !state.detailsToggle
+      }
+    }
+    case FORECAST_TOGGLE : {
+      return {
+        ...state,
+        forecastToggle: !state.forecastToggle
+      }
+    }
+    case LOADING : {
+      return {
+        ...state,
+        loading: !state.loading
+      }
     }
     default: 
       return state;

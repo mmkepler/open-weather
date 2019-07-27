@@ -13,7 +13,11 @@ const initialState = {
   'sunrise': null,
   'sunset': null,
   'input': '',
-  'error': false
+  'error': false,
+  'detailsToggle': false,
+  'forecastToggle': false,
+  'forecast': [],
+  'loading': true
 };
 
 export default initialState;

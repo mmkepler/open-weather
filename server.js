@@ -19,20 +19,21 @@ app.use(express.static(path.join(__dirname, "client", "build")));
 
 const utcConvertor = (utc, offset, type) => {
   let tempDate;
+  
   if(Math.sign(offset) === -1){
-    tempDate = parseInt((utc * 1000) + Math.abs(offset));
-  } else {
     tempDate = parseInt((utc * 1000) - Math.abs(offset));
+  } else {
+    tempDate = parseInt((utc * 1000) + Math.abs(offset));
   }
   var date = new Date(tempDate);
   var year = date.getFullYear();
-  var month = date.getMonth();
+  year = year.toString().slice(2);
+  var month = date.getMonth() + 1;
   var day = date.getDate();
   var hours = date.getHours();
   var minutes = date.getMinutes();
   var end = '';
   var tempHours;
-  //console.log('hours ', hours);
   
   if(minutes < 10){
     minutes = '0' + minutes;
@@ -78,7 +79,7 @@ const findIcon = (data) => {
   let tempData = data.toString();
   
   if(iconConversion.hasOwnProperty(tempData)){
-    tempIcon = iconConversion[tempData];
+    tempIcon = iconConversion[tempData] + ' weather-icon';
     return tempIcon;
   } else {
     tempIcon = 'wi wi-alien';
@@ -110,7 +111,7 @@ const formatData = (weatherData) => {
   weatherObj.lowtemp = Math.trunc(weatherData.main.temp_min);
   weatherObj.hightemp = Math.trunc(weatherData.main.temp_max);
   weatherObj.icon = findIcon(weatherData.weather[0].id);
-  weatherObj.weather = weatherData.weather[0].main;
+  weatherObj.weather = weatherData.weather[0].main.toLowerCase();
   weatherObj.wind = weatherData.wind.speed;
   weatherObj.humidity = weatherData.main.humidity;
   weatherObj.pressure = pressureConvertor(weatherData.main.pressure);
@@ -118,10 +119,24 @@ const formatData = (weatherData) => {
   weatherObj.sunrise = utcConvertor(weatherData.sys.sunrise, weatherData.timezone, suntype);
   weatherObj.sunset = utcConvertor(weatherData.sys.sunset, weatherData.timezone, suntype);
 
-  //console.log("weather Obj", weatherObj);
+  //console.log("weather Obj dt", weatherData.dt);
   return weatherObj;
 }
 
+const forecastFormat = (forecastData) => {
+  //console.log('type ', forecastData);
+  let forecastObj = [];
+  let tempObj = {};
+  forecastData.forEach((el) => {
+    tempObj.date = utcConvertor(el.dt, 0, dttype);
+    tempObj.temp = Math.trunc(el.main.temp);
+    tempObj.icon = findIcon(el.weather[0].id);
+    forecastObj.push(tempObj);
+    tempObj = {};
+  });
+  return forecastObj;
+ 
+};
 
 /*Routes */
 
@@ -168,6 +183,22 @@ app.post('/api/find', (req, res) => {
   })
   .catch(err => console.log('error ' + err));
 
+});
+
+app.post('/api/forecast', (req, res) => {
+  let city = req.body.city;
+  const forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
+axios.get(forecast_url)
+.then(forecast => {
+  //console.log('forecast ', res.data.list);
+  let obj = forecastFormat(forecast.data.list);
+  return obj;
+})
+.then(data => {
+  console.log(" data ", data);
+  res.send(data);
+})
+.catch(err => console.log('error retrieving forecast ', err));
 });
 
 const port = process.env.PORT || 5004;

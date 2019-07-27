@@ -6,9 +6,13 @@ export default class Header extends React.Component {
 
    handleSubmit = (e) => {
     e.preventDefault();
+    this.props.forecastToggle();
     this.props.flagError(false);
+    this.props.updateLoading();
+    
     axios.post('/api/search', {city: this.props.input})
     .then(res => {
+      this.props.updateLoading();
       if(res.data === 'error'){
         this.props.flagError(true);
       } else {
@@ -25,17 +29,17 @@ export default class Header extends React.Component {
         <div className='d-flex justify-content-center w-100' id='nav-container'>
           <div className='row w-100'>
             <div className='col-md-6 col-sm-12 d-flex justify-content-center'>
-              <p className="navbar-brand" id="logo-text"> 
-              <i className="wi wi-sunrise" id='logo-icon'></i>
+              <p className='navbar-brand' id='logo-text'> 
+              <i className='wi wi-sunrise' id='logo-icon'></i>
               &nbsp;Weather </p>
             </div>
             <div className='col-md-6 col-sm-12'>
-              <form className="form-inline d-flex justify-content-center" onSubmit={e => this.handleSubmit(e)}>
+              <form className='form-inline d-flex justify-content-center' onSubmit={e => this.handleSubmit(e)}>
                 <div className='input-group' id='input'>
-                <input placeholder="City or Zipcode" aria-label="Search" 
+                <input placeholder='City or Zipcode' aria-label='Search' 
                 onChange={ e => this.props.onKeyup(e)} 
                 value={this.props.input} id='search-input' required/>
-                  <button className='btn'  id='search-btn' type="submit" >Search</button>
+                  <button className='btn'  id='search-btn' type='submit' >Search</button>
                 </div>
               </form>
             </div>
