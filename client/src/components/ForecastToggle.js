@@ -7,14 +7,12 @@ export default class forecastToggle extends React.Component {
     this.props.updateLoading();
     console.log('city ', this.props.city)
     this.props.forecastToggle();
-    axios.post('/api/forecast', {city: this.props.city})
+    axios.post('/forecast', {city: this.props.city})
     .then((res) => {
       console.log('recieved from forecast', res.data);
       this.props.updateForecast(res.data);
       this.props.updateLoading();
-    }
-
-    )
+    })
     .catch(err => console.log('error retrieving forecast', err));
   }
   

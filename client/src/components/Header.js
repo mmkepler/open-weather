@@ -10,7 +10,7 @@ export default class Header extends React.Component {
     this.props.flagError(false);
     this.props.updateLoading();
     
-    axios.post('/api/search', {city: this.props.input})
+    axios.post('/search', {city: this.props.input})
     .then(res => {
       this.props.updateLoading();
       if(res.data === 'error'){

@@ -22,7 +22,6 @@ const inputReducer = (state = initialState, action) => {
         error: action.payload
       };
     }
-
     default: 
       return state;
   }

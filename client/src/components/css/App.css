@@ -93,7 +93,7 @@ footer {
   color: #009799;
 }
 
-/*-----------Card Content-----------*/
+/*-----------Cards Content-----------*/
 #current,
 #details,
 #forecast {
@@ -195,7 +195,7 @@ p.forecast-temp {
 }
 
 
-/*-----------Spinner-----------*/
+/*-----------Spinners-----------*/
 
 #notice {
   position: fixed;

@@ -9,14 +9,12 @@ const app = express();
 let dttype = 'dt';
 let suntype = 'sun';
 
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use(express.static(path.join(__dirname, "client", "build")));
 
-
+/* Converts utc date to readable date, and formats for use */
 const utcConvertor = (utc, offset, type) => {
   let tempDate;
   
@@ -35,6 +33,7 @@ const utcConvertor = (utc, offset, type) => {
   var end = '';
   var tempHours;
   
+  /* adds 0 to single number minutes */
   if(minutes < 10){
     minutes = '0' + minutes;
   }
@@ -50,6 +49,7 @@ const utcConvertor = (utc, offset, type) => {
     tempHours = hours
   }
 
+  /* creates string for full date and time or just time for sunset/sunrise */
   if(type === 'dt'){
     var dateTime = month + '/' + day + '/' + year + ' ' + tempHours + ':' + minutes + ' ' + end;
     //console.log('hours at time ', tempHours);
@@ -61,19 +61,21 @@ const utcConvertor = (utc, offset, type) => {
   }
 };
 
+/* Converts metric pressure to inches */
 const pressureConvertor = (pressure) => {
   let tempPress = pressure / 33.863886666667;
   tempPress = tempPress.toFixed(2);
   return tempPress;
 };
 
+/* converts meters to mi for visibility */
 const distanceConvertor = (dist) => {
   let tempDist = dist / 1609.34;
   tempDist = tempDist.toFixed(2);
   return tempDist;
-
 };
 
+/* Finds weather class to use proper icon */
 const findIcon = (data) => {
   let tempIcon;
   let tempData = data.toString();
@@ -87,8 +89,8 @@ const findIcon = (data) => {
   }
 };
 
+/* Creates weather obj to send to front end */
 const formatData = (weatherData) => {
-  
   let weatherObj = {
     'city': null,
     'datetime': null,
@@ -123,6 +125,7 @@ const formatData = (weatherData) => {
   return weatherObj;
 }
 
+/* creates forecast object to send to front end */
 const forecastFormat = (forecastData) => {
   //console.log('type ', forecastData);
   let forecastObj = [];
@@ -140,7 +143,8 @@ const forecastFormat = (forecastData) => {
 
 /*Routes */
 
-app.post ('/api/search' , (req, res) => {
+/* requests current weather data by city */
+app.post ('/search' , (req, res) => {
   let tempCity = req.body.city;
   let zip = /^\d{5}$|^\d{5}-\d{4}$/;
   let cityUrl;
@@ -165,10 +169,10 @@ app.post ('/api/search' , (req, res) => {
     console.log('search error ', err);
     res.send('error');
   });
-  
 });
 
-app.post('/api/find', (req, res) => {
+/* uses gelocation data to retrieve current weather */
+app.post('/find', (req, res) => {
   var lat = req.body.lat;
   var lon = req.body.lon;
   const weather_url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
@@ -182,10 +186,10 @@ app.post('/api/find', (req, res) => {
     res.send(data);
   })
   .catch(err => console.log('error ' + err));
-
 });
 
-app.post('/api/forecast', (req, res) => {
+/* requests forcast data from openweathermap */
+app.post('/forecast', (req, res) => {
   let city = req.body.city;
   const forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
 axios.get(forecast_url)
@@ -200,6 +204,7 @@ axios.get(forecast_url)
 })
 .catch(err => console.log('error retrieving forecast ', err));
 });
+
 
 const port = process.env.PORT || 5004;
 app.listen(port, () => {

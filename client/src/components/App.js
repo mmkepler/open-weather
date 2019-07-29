@@ -11,7 +11,14 @@ import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { WEATHER_UPDATE, INPUT_UPDATE, SUBMIT_CLEAR, SEARCH_ERROR, DETAILS_TOGGLE, FORECAST_TOGGLE, FORECAST_UPDATE, LOADING } from '../actions/weatherActions';
+import { WEATHER_UPDATE, 
+        INPUT_UPDATE, 
+        SUBMIT_CLEAR, 
+        SEARCH_ERROR, 
+        DETAILS_TOGGLE, 
+        FORECAST_TOGGLE, 
+        FORECAST_UPDATE, 
+        LOADING } from '../actions/weatherActions';
 
   
 const mapStateToProps = state => {
@@ -71,13 +78,13 @@ const mapDispatchToProps = dispatch => ({
   componentWillMount() {
     
     navigator.geolocation.getCurrentPosition(position => { 
-      axios.post('/api/find', {lat: position.coords.latitude, lon: position.coords.longitude})
+      axios.post('/find', {lat: position.coords.latitude, lon: position.coords.longitude})
       .then(res => {
         this.props.loadData(res.data);
         this.props.updateLoading();
       });
     });
-  }toggleForecast
+  }
 
   render = () => (
     <div className="container-fluid" id="main-bg">
@@ -96,11 +103,7 @@ const mapDispatchToProps = dispatch => ({
           </div>
         </div>
       : null
-    }
-      
-            
-        
-
+    }     
 
       <Header
         input={this.props.input}
@@ -112,10 +115,7 @@ const mapDispatchToProps = dispatch => ({
         forecastToggle={this.props.toggleForecast}
       />
 
-
-
-
-      {
+      {/* Shows loading screen if loading */
         this.props.loading ?  
         (<div className="modal" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
@@ -130,8 +130,7 @@ const mapDispatchToProps = dispatch => ({
         </div>) : null
       }
       
-      
-      { 
+      { /* Shows error on screen */
       this.props.error ? 
         (<div id='alert'>
         <p>City entered does not exist. Please try again</p>
@@ -146,10 +145,10 @@ const mapDispatchToProps = dispatch => ({
         currenttemp={this.props.currenttemp}
         lowtemp={this.props.lowtemp}
         hightemp={this.props.hightemp}
-        
-        
       />
-      {this.props.detailsToggle ? 
+
+      { /*Shows details card expanded if clicked, else shows details button */
+        this.props.detailsToggle ? 
       (<Details 
       wind={this.props.wind}
       humidity={this.props.humidity}
@@ -161,11 +160,11 @@ const mapDispatchToProps = dispatch => ({
       : 
       (<DetailsToggle 
       detailsToggle={this.props.toggleDetails}
-      
       />)
       }
 
-      {this.props.forecastToggle ? 
+      {/*Shows forecast card expanded if clicked, else shows button */
+        this.props.forecastToggle ? 
       <Forecast 
         forecast={this.props.forecast}
       />
@@ -176,7 +175,6 @@ const mapDispatchToProps = dispatch => ({
       city={this.props.city}
       updateLoading={this.props.updateLoading}
       />
-
       }
       
       <Footer />

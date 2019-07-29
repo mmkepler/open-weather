@@ -9,7 +9,6 @@ const forecastReducer = (state = initialState, action) => {
         ...state,
         forecast: action.payload
       }
-      
     }
     
     default: 
