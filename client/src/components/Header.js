@@ -29,9 +29,11 @@ export default class Header extends React.Component {
         <div className='d-flex justify-content-center w-100' id='nav-container'>
           <div className='row w-100'>
             <div className='col-md-6 col-sm-12 d-flex justify-content-center'>
+              <a href='/'>
               <p className='navbar-brand' id='logo-text'> 
               <i className='wi wi-sunrise' id='logo-icon'></i>
               &nbsp;Weather </p>
+              </a>
             </div>
             <div className='col-md-6 col-sm-12'>
               <form className='form-inline d-flex justify-content-center' onSubmit={e => this.handleSubmit(e)}>

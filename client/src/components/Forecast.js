@@ -7,7 +7,7 @@ export default class Forecast extends React.Component {
       <div className='d-flex justify-content-center'>
         <div className="card d-flex justify-content-center" id='forecast'>
           <div className="card-body">
-
+          <div className='hidden-card'>
             <div className='row'>
               <div className='col-4'>
               <div className='details-seperator'></div>
@@ -42,6 +42,7 @@ export default class Forecast extends React.Component {
               }
               
             </div>
+          </div>
           </div>
         </div>
       </div>

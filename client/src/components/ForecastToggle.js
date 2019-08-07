@@ -4,14 +4,11 @@ import axios from 'axios';
 export default class forecastToggle extends React.Component {
   handleClick = (e) => {
     e.preventDefault();
-    this.props.updateLoading();
-    console.log('city ', this.props.city)
-    this.props.forecastToggle();
+    
     axios.post('/forecast', {city: this.props.city})
     .then((res) => {
-      console.log('recieved from forecast', res.data);
       this.props.updateForecast(res.data);
-      this.props.updateLoading();
+      this.props.forecastToggle();
     })
     .catch(err => console.log('error retrieving forecast', err));
   }

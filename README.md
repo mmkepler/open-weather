@@ -1,4 +1,4 @@
-#  Open Weather Conditions and Forecast App - WIP
+#  Open Weather Conditions and Forecast App
 
 ###  This app uses the following:
 *  HTML
@@ -8,6 +8,6 @@
 *  Redux
 *  [Open Weather](https://openweathermap.org/api) Map Api
 
-### Items still being worked on
+### This is a work in progress. Items still being worked on
 *  Converting to a Progressive Web App
 *  Adding Tests

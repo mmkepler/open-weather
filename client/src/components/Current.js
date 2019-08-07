@@ -40,7 +40,6 @@ export default class Current extends React.Component {
           </div>
         </div>
       </div>
-      
     </div>
   )
 }

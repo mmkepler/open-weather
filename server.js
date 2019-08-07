@@ -52,10 +52,8 @@ const utcConvertor = (utc, offset, type) => {
   /* creates string for full date and time or just time for sunset/sunrise */
   if(type === 'dt'){
     var dateTime = month + '/' + day + '/' + year + ' ' + tempHours + ':' + minutes + ' ' + end;
-    //console.log('hours at time ', tempHours);
     return dateTime;
   } else {
-    //console.log('hours at sun', tempHours)
     var sunTime = tempHours + ':' + minutes + ' ' + end;
     return sunTime;
   }
@@ -120,14 +118,11 @@ const formatData = (weatherData) => {
   weatherObj.visibility = distanceConvertor(weatherData.visibility);
   weatherObj.sunrise = utcConvertor(weatherData.sys.sunrise, weatherData.timezone, suntype);
   weatherObj.sunset = utcConvertor(weatherData.sys.sunset, weatherData.timezone, suntype);
-
-  //console.log("weather Obj dt", weatherData.dt);
   return weatherObj;
 }
 
 /* creates forecast object to send to front end */
 const forecastFormat = (forecastData) => {
-  //console.log('type ', forecastData);
   let forecastObj = [];
   let tempObj = {};
   forecastData.forEach((el) => {
@@ -150,7 +145,6 @@ app.post ('/search' , (req, res) => {
   let cityUrl;
 
   if(tempCity.match(zip)){
-    console.log('matches');
     city_url = `http://api.openweathermap.org/data/2.5/weather?zip=${tempCity}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
   } else {
     tempCity = tempCity.trim();
@@ -166,7 +160,6 @@ app.post ('/search' , (req, res) => {
     res.send(data);
   })
   .catch(err => {
-    console.log('search error ', err);
     res.send('error');
   });
 });
@@ -176,7 +169,6 @@ app.post('/find', (req, res) => {
   var lat = req.body.lat;
   var lon = req.body.lon;
   const weather_url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
-  //console.log(weather_url);
   axios.get(weather_url)
   .then(res => {
     var obj = formatData(res.data);
@@ -194,12 +186,10 @@ app.post('/forecast', (req, res) => {
   const forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
 axios.get(forecast_url)
 .then(forecast => {
-  //console.log('forecast ', res.data.list);
   let obj = forecastFormat(forecast.data.list);
   return obj;
 })
 .then(data => {
-  console.log(" data ", data);
   res.send(data);
 })
 .catch(err => console.log('error retrieving forecast ', err));
@@ -208,5 +198,5 @@ axios.get(forecast_url)
 
 const port = process.env.PORT || 5004;
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
+  //console.log(`Server running on port ${port}`)
 });
