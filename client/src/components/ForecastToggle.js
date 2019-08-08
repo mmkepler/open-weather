@@ -19,14 +19,14 @@ export default class forecastToggle extends React.Component {
         <div className="card-body">
         <div className='show-data'>
           <div className='row'>
-            <div className='col-3'></div>
-            <div className='col-4'>
+            <div className='col-2'></div>
+            <div className='col-6'>
             <p className='toggle-button'>forecast</p>
             </div>
             <div className='col-2'>
             <p className='toggle-button'>+</p>
             </div>
-            <div className='col-3'></div>
+            <div className='col-2'></div>
           </div>
         </div>          
       </div>
