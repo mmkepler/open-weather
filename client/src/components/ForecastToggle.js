@@ -17,20 +17,20 @@ export default class forecastToggle extends React.Component {
     <div className='d-flex justify-content-center' onClick={e => this.handleClick(e)}>
       <div className="card d-flex justify-content-center" id='details'>
         <div className="card-body">
-        <div className='show-data'>
-          <div className='row'>
-            <div className='col-2'></div>
-            <div className='col-6'>
-            <p className='toggle-button'>forecast</p>
+          <div className='show-data'>
+            <div className='row'>
+              <div className='col-2'></div>
+              <div className='col-6'>
+              <p className='toggle-button'>forecast</p>
+              </div>
+              <div className='col-2'>
+              <p className='toggle-button'>+</p>
+              </div>
+              <div className='col-2'></div>
             </div>
-            <div className='col-2'>
-            <p className='toggle-button'>+</p>
-            </div>
-            <div className='col-2'></div>
-          </div>
-        </div>          
+          </div>          
+        </div>
       </div>
     </div>
-  </div>
   )
 }

@@ -112,7 +112,7 @@ footer {
   background: rgba(0, 151, 153, .8);
   margin-top: 20px;
   border-radius: 2px;
-  min-width: 300px;
+  width: 300px;
   text-align: center;
   box-shadow: 1px 1px 12px 1px rgba(0, 0, 0, .3);
 }
