@@ -9,13 +9,13 @@ export default class Forecast extends React.Component {
           <div className="card-body">
           <div className='hidden-card'>
             <div className='row'>
-              <div className='col-4'>
+              <div className='col-3'>
               <div className='details-seperator'></div>
               </div>
-              <div className='col-4'>
+              <div className='col-6'>
                 <p>forecast</p>
               </div>
-              <div className='col-4'>
+              <div className='col-3'>
                 <div className='details-seperator'></div>
               </div>
             </div>
