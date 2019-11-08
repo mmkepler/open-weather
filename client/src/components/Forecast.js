@@ -26,10 +26,10 @@ export default class Forecast extends React.Component {
                   return (
                     <div className='slot' key={index}>
                       <div className='row' >
-                        <div className='col-4'>
+                        <div className='col-5'>
                           <p className='forecast-date'>{el.date}</p>
                         </div>
-                        <div className='col-4'>
+                        <div className='col-3'>
                           <p className='forecast-temp'>{el.temp}&#176;</p>
                         </div>
                         <div className='col-4'>
