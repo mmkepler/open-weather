@@ -18,7 +18,8 @@ import { WEATHER_UPDATE,
         DETAILS_TOGGLE, 
         FORECAST_TOGGLE, 
         FORECAST_UPDATE, 
-        LOADING } from '../actions/weatherActions';
+        LOADING,
+        ERROR_TEXT } from '../actions/weatherActions';
 
   
 const mapStateToProps = state => {
@@ -41,7 +42,8 @@ const mapStateToProps = state => {
     detailsToggle: state.weatherReducer.detailsToggle,
     forecastToggle: state.weatherReducer.forecastToggle,
     forecast: state.forecastReducer.forecast,
-    loading: state.weatherReducer.loading
+    loading: state.weatherReducer.loading,
+    errortext: state.inputReducer.errortext
   }
 };
 
@@ -69,6 +71,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateLoading: () => {
     dispatch({type: LOADING})
+  },
+  updateError: (message) => {
+    dispatch({type: ERROR_TEXT, payload: message})
   }
 });
 
@@ -77,7 +82,8 @@ const mapDispatchToProps = dispatch => ({
 
   componentWillMount() {
 
-    if(typeof window.orientation !== 'undefined') {
+    if(navigator.geolocation){
+      this.props.updateLoading();
       navigator.geolocation.getCurrentPosition(position => { 
         axios.post('/find', {lat: position.coords.latitude, lon: position.coords.longitude})
         .then(res => {
@@ -85,24 +91,20 @@ const mapDispatchToProps = dispatch => ({
           this.props.updateLoading();
         })
         .catch(err => {
-          console.log(err);
-          this.props.flagError(true);
-          this.updateLoading();
+          console.log("err", err)
+          
         })
-      });
-    } 
-    
-    /*navigator.geolocation.getCurrentPosition(position => { 
-      axios.post('/find', {lat: position.coords.latitude, lon: position.coords.longitude})
-      .then(res => {
-        this.props.loadData(res.data);
+      }, (err) => {
+        console.log("error", err)
+        this.props.flagError(true)
+        this.props.updateError(err.message);
         this.props.updateLoading();
-      })
-      .catch(err => {
-        this.props.flagError(true);
-        this.updateLoading();
-      })
-    });*/
+      });
+    } else {
+      //work on this
+      this.props.updateLoading();
+    }
+   
   }
 
   render = () => (
@@ -132,6 +134,7 @@ const mapDispatchToProps = dispatch => ({
         flagError={this.props.flagError}
         updateLoading={this.props.updateLoading}
         forecastToggle={this.props.toggleForecast}
+        updateError={this.props.updateError}
       />
 
       {/* Shows loading screen if loading */
@@ -152,7 +155,7 @@ const mapDispatchToProps = dispatch => ({
       { /* Shows error on screen */
       this.props.error ? 
         (<div id='alert'>
-        <p>City entered does not exist. Please try again</p>
+        <p>{this.props.errortext}</p>
         </div>) : null
       }
       
@@ -193,6 +196,7 @@ const mapDispatchToProps = dispatch => ({
       updateForecast={this.props.updateForecast}
       city={this.props.city}
       updateLoading={this.props.updateLoading}
+      updateError={this.props.updateError}
       />
       }
       

@@ -8,6 +8,7 @@ export default class Header extends React.Component {
     e.preventDefault();
     this.props.forecastToggle();
     this.props.flagError(false);
+    this.props.updateError('');
     this.props.updateLoading();
     
     axios.post('/search', {city: this.props.input})
@@ -15,6 +16,8 @@ export default class Header extends React.Component {
       this.props.updateLoading();
       if(res.data === 'error'){
         this.props.flagError(true);
+        this.props.updateError('City does not exist');
+        console.log(res.data);
       } else {
         this.props.loadData(res.data);
         this.props.submitClear();
@@ -41,7 +44,9 @@ export default class Header extends React.Component {
                 <input placeholder='City or Zipcode' aria-label='Search' 
                 onChange={ e => this.props.onKeyup(e)} 
                 value={this.props.input} id='search-input' required/>
-                  <button className='btn'  id='search-btn' type='submit' >Search</button>
+                  <div className='input-group-append'>
+                    <button className='btn'  id='search-btn' type='submit' >Search</button>
+                  </div>
                 </div>
               </form>
             </div>

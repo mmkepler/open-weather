@@ -17,7 +17,8 @@ const initialState = {
   'detailsToggle': false,
   'forecastToggle': false,
   'forecast': [],
-  'loading': true
+  'loading': false,
+  'errortext': ''
 };
 
 export default initialState;

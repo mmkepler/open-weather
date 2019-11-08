@@ -1,4 +1,4 @@
-import { INPUT_UPDATE, SUBMIT_CLEAR, SEARCH_ERROR } from '../actions/weatherActions';
+import { INPUT_UPDATE, SUBMIT_CLEAR, SEARCH_ERROR, ERROR_TEXT} from '../actions/weatherActions';
 import initialState from './initialState';
 
 
@@ -21,6 +21,12 @@ const inputReducer = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
+    }
+    case ERROR_TEXT : {
+      return{
+        ...state,
+        errortext: action.payload
+      }
     }
     default: 
       return state;

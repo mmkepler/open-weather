@@ -24,12 +24,12 @@ export default class Details extends React.Component {
               <div className='col-6 weather-blocks'>
                 <i className="wi wi-strong-wind weather-icon"></i>
                 <p className='details-data'>wind</p>
-                <p>{this.props.wind} mph</p>
+                <p>{this.props.wind}mph</p>
               </div>
               <div className='col-6 weather-blocks'>
                 <i className="wi wi-humidity weather-icon" ></i>
                 <p className='details-data'>humidity</p>
-                <p>{this.props.humidity} %</p>
+                <p>{this.props.humidity}%</p>
               </div>
             </div>        
 
@@ -37,12 +37,12 @@ export default class Details extends React.Component {
               <div className='col-6 weather-blocks'>
                 <i className="wi wi-barometer weather-icon"></i>
                 <p className='details-data'>pressure</p>
-                <p>{this.props.pressure} in</p>
+                <p>{this.props.pressure}in</p>
               </div>
               <div className='col-6 weather-blocks'>
                 <i className="wi wi-cloud weather-icon" ></i>
                 <p className='details-data'>visibility</p>
-                <p>{this.props.visibility} mi</p>
+                <p>{this.props.visibility}mi</p>
               </div>
             </div>     
 

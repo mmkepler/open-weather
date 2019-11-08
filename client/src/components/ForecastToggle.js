@@ -7,8 +7,13 @@ export default class forecastToggle extends React.Component {
     
     axios.post('/forecast', {city: this.props.city})
     .then((res) => {
-      this.props.updateForecast(res.data);
-      this.props.forecastToggle();
+      if(typeof res === 'string' ) {
+        this.props.updateError(res);
+        this.props.flagError(true);
+      } else {
+        this.props.updateForecast(res.data);
+        this.props.forecastToggle();
+      }
     })
     .catch(err => console.log('error retrieving forecast', err));
   }
@@ -19,14 +24,14 @@ export default class forecastToggle extends React.Component {
         <div className="card-body">
           <div className='show-data'>
             <div className='row'>
-              <div className='col-2'></div>
-              <div className='col-6'>
+              <div className='col-3'></div>
+              <div className='col-4'>
               <p className='toggle-button'>forecast</p>
               </div>
               <div className='col-2'>
               <p className='toggle-button'>+</p>
               </div>
-              <div className='col-2'></div>
+              <div className='col-3'></div>
             </div>
           </div>          
         </div>

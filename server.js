@@ -51,10 +51,10 @@ const utcConvertor = (utc, offset, type) => {
 
   /* creates string for full date and time or just time for sunset/sunrise */
   if(type === 'dt'){
-    var dateTime = month + '/' + day + '/' + year + ' ' + tempHours + ':' + minutes + ' ' + end;
+    var dateTime = month + '/' + day + '/' + year + ' ' + tempHours + ':' + minutes + end;
     return dateTime;
   } else {
-    var sunTime = tempHours + ':' + minutes + ' ' + end;
+    var sunTime = tempHours + ':' + minutes + end;
     return sunTime;
   }
 };
@@ -192,7 +192,10 @@ axios.get(forecast_url)
 .then(data => {
   res.send(data);
 })
-.catch(err => console.log('error retrieving forecast ', err));
+.catch(err => {
+  res.send("Error getting forecast")
+  console.log('error retrieving forecast ', err)
+});
 });
 
 

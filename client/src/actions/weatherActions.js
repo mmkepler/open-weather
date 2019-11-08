@@ -6,3 +6,4 @@ export const DETAILS_TOGGLE = {type: 'DETAILS_TOGGLE'};
 export const FORECAST_TOGGLE = {type: 'FORECAST_TOGGLE'};
 export const FORECAST_UPDATE = {type: 'FORECAST_UPDATE'};
 export const LOADING = {type: 'LOADING'};
+export const ERROR_TEXT = {type: 'ERROR_TEXT'}
