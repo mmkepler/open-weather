@@ -76,14 +76,33 @@ const mapDispatchToProps = dispatch => ({
  class App extends React.Component {
 
   componentWillMount() {
+
+    if(typeof window.orientation !== 'undefined') {
+      navigator.geolocation.getCurrentPosition(position => { 
+        axios.post('/find', {lat: position.coords.latitude, lon: position.coords.longitude})
+        .then(res => {
+          this.props.loadData(res.data);
+          this.props.updateLoading();
+        })
+        .catch(err => {
+          console.log(err);
+          this.props.flagError(true);
+          this.updateLoading();
+        })
+      });
+    } 
     
-    navigator.geolocation.getCurrentPosition(position => { 
+    /*navigator.geolocation.getCurrentPosition(position => { 
       axios.post('/find', {lat: position.coords.latitude, lon: position.coords.longitude})
       .then(res => {
         this.props.loadData(res.data);
         this.props.updateLoading();
-      });
-    });
+      })
+      .catch(err => {
+        this.props.flagError(true);
+        this.updateLoading();
+      })
+    });*/
   }
 
   render = () => (
