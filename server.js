@@ -48,6 +48,10 @@ const utcConvertor = (utc, offset, type) => {
     end = 'am';
     tempHours = hours
   }
+  
+  if(hours === 0){
+    hours = 12;
+  }
 
   /* creates string for full date and time or just time for sunset/sunrise */
   if(type === 'dt'){
@@ -133,7 +137,6 @@ const forecastFormat = (forecastData) => {
     tempObj = {};
   });
   return forecastObj;
- 
 };
 
 /*Routes */

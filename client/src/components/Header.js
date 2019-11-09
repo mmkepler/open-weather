@@ -1,12 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 
-
 export default class Header extends React.Component {
 
    handleSubmit = (e) => {
     e.preventDefault();
-    this.props.forecastToggle();
+
+    if(this.props.isToggle === true){
+      this.props.toggleForecast();
+    }
+
+    if(this.props.isDetails === true){
+      this.props.detailsToggle();
+    }
+    
     this.props.flagError(false);
     this.props.updateError('');
     this.props.updateLoading();
@@ -17,6 +24,21 @@ export default class Header extends React.Component {
       if(res.data === 'error'){
         this.props.flagError(true);
         this.props.updateError('City does not exist');
+        this.props.loadData(
+          {'city': null,
+        'datetime': null,
+        'currenttemp': null,
+        'lowtemp': null,
+        'hightemp': null,
+        'icon': null,
+        'weather': null,
+        'wind': null,
+        'humidity': null,
+        'pressure': null,
+        'visibility': null,
+        'sunrise': null,
+        'sunset': null
+      });
         console.log(res.data);
       } else {
         this.props.loadData(res.data);

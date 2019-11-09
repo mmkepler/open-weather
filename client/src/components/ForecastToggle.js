@@ -4,18 +4,23 @@ import axios from 'axios';
 export default class forecastToggle extends React.Component {
   handleClick = (e) => {
     e.preventDefault();
+
+    if(this.props.city === null){
+      return false;
+    } else {
+      axios.post('/forecast', {city: this.props.city})
+      .then((res) => {
+        if(typeof res === 'string' ) {
+          this.props.updateError(res);
+          this.props.flagError(true);
+        } else {
+          this.props.updateForecast(res.data);
+          this.props.forecastToggle();
+        }
+      })
+      .catch(err => console.log('error retrieving forecast', err));
+    }
     
-    axios.post('/forecast', {city: this.props.city})
-    .then((res) => {
-      if(typeof res === 'string' ) {
-        this.props.updateError(res);
-        this.props.flagError(true);
-      } else {
-        this.props.updateForecast(res.data);
-        this.props.forecastToggle();
-      }
-    })
-    .catch(err => console.log('error retrieving forecast', err));
   }
   
   render = () => (

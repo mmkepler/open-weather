@@ -95,16 +95,14 @@ const mapDispatchToProps = dispatch => ({
           
         })
       }, (err) => {
-        console.log("error", err)
+        //console.log("error", err)
         this.props.flagError(true)
         this.props.updateError(err.message);
         this.props.updateLoading();
       });
     } else {
-      //work on this
       this.props.updateLoading();
     }
-   
   }
 
   render = () => (
@@ -133,8 +131,11 @@ const mapDispatchToProps = dispatch => ({
         loadData={this.props.loadData}
         flagError={this.props.flagError}
         updateLoading={this.props.updateLoading}
-        forecastToggle={this.props.toggleForecast}
+        toggleForecast={this.props.toggleForecast}
+        isToggle={this.props.forecastToggle}
         updateError={this.props.updateError}
+        detailsToggle={this.props.toggleDetails}
+        isDetails={this.props.detailsToggle}
       />
 
       {/* Shows loading screen if loading */
@@ -182,6 +183,7 @@ const mapDispatchToProps = dispatch => ({
       : 
       (<DetailsToggle 
       detailsToggle={this.props.toggleDetails}
+      city={this.props.city}
       />)
       }
 

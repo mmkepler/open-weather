@@ -3,7 +3,11 @@ import React from 'react';
 export default class DetailsToggle extends React.Component {
   handleClick = (e) => {
     e.preventDefault();
-    this.props.detailsToggle();
+    if(this.props.city === null){
+      return false;
+    } else {
+      this.props.detailsToggle();
+    }
   }
   
   render = () => (
