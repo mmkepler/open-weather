@@ -46,14 +46,15 @@ const utcConvertor = (utc, offset, type) => {
   } else if (hours === 12){
     end = 'pm';
     tempHours = hours;
+  } else if (hours === 0){
+    tempHours = 12;
+    end = 'am';
   } else {
     end = 'am';
     tempHours = hours
   }
   
-  if(hours === 0){
-    hours = 12;
-  }
+  
 
   /* creates string for full date and time or just time for sunset/sunrise */
   if(type === 'dt'){
