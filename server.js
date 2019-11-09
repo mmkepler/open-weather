@@ -6,10 +6,12 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const iconConversion = require('./helpers/iconConversion');
 const app = express();
+const favicon = require('serve-favicon');
 let dttype = 'dt';
 let suntype = 'sun';
 
 app.use(cors());
+app.use(favicon(path.join(__dirname, "client", "build", "planetTitle.png")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "client", "build")));
