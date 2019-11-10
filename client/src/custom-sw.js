@@ -8,26 +8,8 @@ if ('function' === typeof importScripts) {
 
     workbox.setConfig({debug: false});
 
+     /* injection point for manifest files.  */
     workbox.precaching.precacheAndRoute([]);
- 
-    workbox.routing.registerNavigationRoute('/index.html', {
-      blacklist: [/^\/_/, /\/[^\/]+\.[^\/]+$/],
-    });
-
-    /*I realize these image formats aren't all needed for this project */
-    workbox.routing.registerRoute(
-      /\.(?:png|gif|jpg|webp|jpeg|svg)$/,
-      workbox.strategies.cacheFirst({
-        cacheName: 'weather-images'
-      })
-    );
-
-    workbox.routing.registerRoute(
-      /\.(?:js|css|html)$/,
-      workbox.strategies.cacheFirst({
-        cacheName: 'weather-files'
-      })
-    );
  
 } else {
     console.log('Workbox could not be loaded. No Offline support');

@@ -7,10 +7,9 @@ const buildSW = () => {
     swDest: 'build/sw.js', 
     globDirectory: 'build',
     globPatterns: [
-      '**\/*.{js,css,html,png,jpg}',
+      '**\/*.{js,css,html,png,jpg,eot,woff,woff2,json,eot,svg,ttf}',
     ]
   }).then(({count, size, warnings}) => {
-    //warnings.forEach(console.warn);
     //console.log(`${count} files will be precached, totaling ${size} bytes.`);
   });
 }

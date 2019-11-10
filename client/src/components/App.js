@@ -85,6 +85,7 @@ const mapDispatchToProps = dispatch => ({
 
     if(navigator.geolocation){
       this.props.updateLoading();
+      this.props.flagError(false);
       navigator.geolocation.getCurrentPosition(position => { 
         axios.post('/find', {lat: position.coords.latitude, lon: position.coords.longitude})
         .then(res => {
@@ -92,17 +93,22 @@ const mapDispatchToProps = dispatch => ({
           this.props.updateLoading();
         })
         .catch(err => {
-          console.log("err", err)
+          console.log("error loading forecast data", err);
+          this.props.updateLoading();
+          this.props.flagError(true);
+          this.props.updateError("You may be offline");
           
         })
       }, (err) => {
-        //console.log("error", err)
+        console.log("error requesting forecast", err)
         this.props.flagError(true)
         this.props.updateError(err.message);
-        this.props.updateLoading();
+        this.props.updateLoading("Geolocation failure. Please check permissions");
       });
     } else {
       this.props.updateLoading();
+      this.props.flagError(true);
+      this.props.updateError("Geolocation failure. Please check permissions");
     }
   }
 
@@ -137,6 +143,7 @@ const mapDispatchToProps = dispatch => ({
         updateError={this.props.updateError}
         detailsToggle={this.props.toggleDetails}
         isDetails={this.props.detailsToggle}
+        submitClear={this.props.submitClear}
       />
 
       {/* Shows loading screen if loading */

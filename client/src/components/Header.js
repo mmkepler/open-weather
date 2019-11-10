@@ -40,12 +40,22 @@ export default class Header extends React.Component {
         'sunset': null
       });
         console.log(res.data);
+        this.props.submitClear()
+        this.props.flagError(true);
+        this.props.updateError("Error retreiving data. Try again.");
       } else {
         this.props.loadData(res.data);
         this.props.submitClear();
       }
     })
-    .catch(err => console.log('header error ', err));
+    .catch(err => {
+      console.log('header error ', err);
+      console.log('online check', navigator.online);
+      this.props.submitClear();
+      this.props.updateLoading();
+      this.props.flagError(true);
+      this.props.updateError('You may be offline. Check Connection');
+    })
   }
 
   render = () => (
