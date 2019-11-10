@@ -1,27 +1,27 @@
-import React from 'react';
-import Current from './Current';
-import Details from './Details';
-import DetailsToggle from './DetailsToggle';
-import Forecast from './Forecast';
-import ForecastToggle from './ForecastToggle';
-import Header from './Header';
-import Footer from './Footer';
+import React from "react";
+import Current from "./Current";
+import Details from "./Details";
+import DetailsToggle from "./DetailsToggle";
+import Forecast from "./Forecast";
+import ForecastToggle from "./ForecastToggle";
+import Header from "./Header";
+import Footer from "./Footer";
 import "typeface-roboto";
-import 'bootstrap/dist/css/bootstrap.css';
-import './css/App.css';
-import './css/weather-icons.min.css';
-import axios from 'axios';
-import { connect } from 'react-redux';
+import "bootstrap/dist/css/bootstrap.css";
+import "./css/App.css";
+import "./css/weather-icons.min.css";
+import axios from "axios";
+import { connect } from "react-redux";
+//actions 
 import { WEATHER_UPDATE, 
-        INPUT_UPDATE, 
-        SUBMIT_CLEAR, 
-        SEARCH_ERROR, 
-        DETAILS_TOGGLE, 
-        FORECAST_TOGGLE, 
-        FORECAST_UPDATE, 
-        LOADING,
-        ERROR_TEXT } from '../actions/weatherActions';
-
+  INPUT_UPDATE, 
+  SUBMIT_CLEAR, 
+  SEARCH_ERROR, 
+  DETAILS_TOGGLE, 
+  FORECAST_TOGGLE, 
+  FORECAST_UPDATE, 
+  LOADING,
+  ERROR_TEXT } from "../actions/weatherActions";
   
 const mapStateToProps = state => {
   return {
@@ -82,12 +82,13 @@ const mapDispatchToProps = dispatch => ({
  class App extends React.Component {
 
   componentWillMount() {
-
+    //requests geolocation data, and sends request for local conditions to server
     if(navigator.geolocation){
+      //start loading and reset any errors showing
       this.props.updateLoading();
       this.props.flagError(false);
       navigator.geolocation.getCurrentPosition(position => { 
-        axios.post('/find', {lat: position.coords.latitude, lon: position.coords.longitude})
+        axios.post("/find", {lat: position.coords.latitude, lon: position.coords.longitude})
         .then(res => {
           this.props.loadData(res.data);
           this.props.updateLoading();
@@ -103,12 +104,12 @@ const mapDispatchToProps = dispatch => ({
         console.log("error requesting forecast", err)
         this.props.flagError(true)
         this.props.updateError(err.message);
-        this.props.updateLoading("Geolocation failure. Please check permissions");
+        this.props.updateLoading("Geolocation blocked");
       });
     } else {
       this.props.updateLoading();
       this.props.flagError(true);
-      this.props.updateError("Geolocation failure. Please check permissions");
+      this.props.updateError("Geolocation blocked");
     }
   }
 
@@ -117,15 +118,15 @@ const mapDispatchToProps = dispatch => ({
 
     {
       this.props.loading ? 
-        <div id='notice' >
-          <div className='spinner-grow spin' role='status'>
-            <span className='sr-only'>Loading...</span>
+        <div id="notice" >
+          <div className="spinner-grow spin" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
-          <div className='spinner-grow spin' role='status'>
-            <span className='sr-only'>Loading...</span>
+          <div className="spinner-grow spin" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
-          <div className='spinner-grow spin' role='status'>
-            <span className='sr-only'>Loading...</span>
+          <div className="spinner-grow spin" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
       : null
@@ -145,25 +146,10 @@ const mapDispatchToProps = dispatch => ({
         isDetails={this.props.detailsToggle}
         submitClear={this.props.submitClear}
       />
-
-      {/* Shows loading screen if loading */
-        this.props.loading ?  
-        (<div className="modal" tabIndex="-1" role="dialog">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-body">
-            <div className="spinner-border" role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
-            </div>
-          </div>
-        </div>
-        </div>) : null
-      }
       
       { /* Shows error on screen */
       this.props.error ? 
-        (<div id='alert'>
+        (<div id="alert">
         <p>{this.props.errortext}</p>
         </div>) : null
       }

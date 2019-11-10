@@ -1,5 +1,5 @@
-import { WEATHER_UPDATE, DETAILS_TOGGLE, FORECAST_TOGGLE, LOADING} from '../actions/weatherActions';
-import initialState from './initialState';
+import { WEATHER_UPDATE, DETAILS_TOGGLE, FORECAST_TOGGLE, LOADING} from "../actions/weatherActions";
+import initialState from "./initialState";
 
 const weatherReducer = (state = initialState, action) => {
   switch(action.type){

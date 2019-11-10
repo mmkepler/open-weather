@@ -1,10 +1,10 @@
-if ('function' === typeof importScripts) {
+if ("function" === typeof importScripts) {
   importScripts(
-    'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
+    "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
   );
  
   if (workbox) {
-    //console.log('Workbox loaded');
+    //console.log("Workbox loaded");
 
     workbox.setConfig({debug: false});
 
@@ -12,11 +12,11 @@ if ('function' === typeof importScripts) {
     workbox.precaching.precacheAndRoute([
   {
     "url": "asset-manifest.json",
-    "revision": "ce810968f88d5b7ce29b38f0c87ebd7b"
+    "revision": "45aca938d93c18905b8994dc46119741"
   },
   {
     "url": "index.html",
-    "revision": "3de857235b509f9eacc31b20979513ef"
+    "revision": "9c0aead7fed62f046694829ca96e35d5"
   },
   {
     "url": "manifest.json",
@@ -27,12 +27,12 @@ if ('function' === typeof importScripts) {
     "revision": "ddd5ab6caa7969dcb7cfdf1aaa739e3e"
   },
   {
-    "url": "precache-manifest.f6a75be4804684119a6a1c57f509e87f.js",
-    "revision": "f6a75be4804684119a6a1c57f509e87f"
+    "url": "precache-manifest.596d4016275e983555d0f6ea8ff46e62.js",
+    "revision": "596d4016275e983555d0f6ea8ff46e62"
   },
   {
     "url": "service-worker.js",
-    "revision": "e57d5d6ac8079ae6e414c18111b68c36"
+    "revision": "77691c7174ad15d609de7562b13199de"
   },
   {
     "url": "static/css/2.284129a3.chunk.css",
@@ -47,8 +47,8 @@ if ('function' === typeof importScripts) {
     "revision": "5da56849c91a50d96560ed7283a7f585"
   },
   {
-    "url": "static/js/main.aa9bc21c.chunk.js",
-    "revision": "1ea651061443e23b6480723a0ebd0091"
+    "url": "static/js/main.7779e588.chunk.js",
+    "revision": "ee7a54ccb0de533a625acb820746d919"
   },
   {
     "url": "static/js/runtime~main.a8a9905a.js",
@@ -177,6 +177,6 @@ if ('function' === typeof importScripts) {
 ]);
  
 } else {
-    console.log('Workbox could not be loaded. No Offline support');
+    console.log("Workbox could not be loaded. No Offline support");
   }
 }

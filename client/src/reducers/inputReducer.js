@@ -1,5 +1,5 @@
-import { INPUT_UPDATE, SUBMIT_CLEAR, SEARCH_ERROR, ERROR_TEXT} from '../actions/weatherActions';
-import initialState from './initialState';
+import { INPUT_UPDATE, SUBMIT_CLEAR, SEARCH_ERROR, ERROR_TEXT} from "../actions/weatherActions";
+import initialState from "./initialState";
 
 const inputReducer = (state = initialState, action) => {
   switch(action.type){
@@ -12,7 +12,7 @@ const inputReducer = (state = initialState, action) => {
     case SUBMIT_CLEAR : {
       return {
         ...state,
-        input: ''
+        input: ""
       };
     }
     case SEARCH_ERROR : {
