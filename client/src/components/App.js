@@ -1,6 +1,4 @@
 import React from 'react';
-import './css/App.css';
-import './css/weather-icons.min.css';
 import Current from './Current';
 import Details from './Details';
 import DetailsToggle from './DetailsToggle';
@@ -8,7 +6,10 @@ import Forecast from './Forecast';
 import ForecastToggle from './ForecastToggle';
 import Header from './Header';
 import Footer from './Footer';
+import "typeface-roboto";
 import 'bootstrap/dist/css/bootstrap.css';
+import './css/App.css';
+import './css/weather-icons.min.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { WEATHER_UPDATE, 
