@@ -144,7 +144,6 @@ const mapDispatchToProps = dispatch => ({
         updateError={this.props.updateError}
         detailsToggle={this.props.toggleDetails}
         isDetails={this.props.detailsToggle}
-        submitClear={this.props.submitClear}
       />
       
       { /* Shows error on screen */

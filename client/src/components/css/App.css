@@ -107,7 +107,9 @@ footer {
 /*-----------Cards Content-----------*/
 #current,
 #details,
-#forecast {
+#forecast,
+#forecast-toggle,
+#details-toggle {
   color: white;
   background: rgba(0, 151, 153, .8);
   margin-top: 20px;

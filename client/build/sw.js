@@ -12,11 +12,11 @@ if ("function" === typeof importScripts) {
     workbox.precaching.precacheAndRoute([
   {
     "url": "asset-manifest.json",
-    "revision": "45aca938d93c18905b8994dc46119741"
+    "revision": "8e396ad72e41f1082d596686d25b49d2"
   },
   {
     "url": "index.html",
-    "revision": "9c0aead7fed62f046694829ca96e35d5"
+    "revision": "821de012a5101ab5e8e0d6b6eaffaf14"
   },
   {
     "url": "manifest.json",
@@ -27,36 +27,36 @@ if ("function" === typeof importScripts) {
     "revision": "ddd5ab6caa7969dcb7cfdf1aaa739e3e"
   },
   {
-    "url": "precache-manifest.596d4016275e983555d0f6ea8ff46e62.js",
-    "revision": "596d4016275e983555d0f6ea8ff46e62"
+    "url": "precache-manifest.1eced2337e94defd91cbcf3b03d7745e.js",
+    "revision": "1eced2337e94defd91cbcf3b03d7745e"
   },
   {
     "url": "service-worker.js",
-    "revision": "77691c7174ad15d609de7562b13199de"
+    "revision": "b196dc733c765d7f183743cf360bea33"
   },
   {
     "url": "static/css/2.284129a3.chunk.css",
     "revision": "b62bfe042cdf970447c02349daa2f6b6"
   },
   {
-    "url": "static/css/main.56f324d7.chunk.css",
-    "revision": "b8450c7c929231205aea7d3a686a7f63"
+    "url": "static/css/main.3bb42c84.chunk.css",
+    "revision": "622576fcc692b26ea779c55423b610b4"
   },
   {
-    "url": "static/js/2.2bf38b23.chunk.js",
-    "revision": "5da56849c91a50d96560ed7283a7f585"
+    "url": "static/js/2.16e326b1.chunk.js",
+    "revision": "7ce3255393b7741aa79383a435eb04c5"
   },
   {
-    "url": "static/js/main.7779e588.chunk.js",
-    "revision": "ee7a54ccb0de533a625acb820746d919"
+    "url": "static/js/main.3423b589.chunk.js",
+    "revision": "4f980e274aeeb1fe902fe6c387922caf"
   },
   {
     "url": "static/js/runtime~main.a8a9905a.js",
     "revision": "238c9148d722c1b6291779bd879837a1"
   },
   {
-    "url": "static/media/hohenschwangau-bg-4.d4832cbc.jpg",
-    "revision": "d4832cbcb3788921f88de78faec0d9de"
+    "url": "static/media/hohenschwangau-bg-4.c989de78.jpg",
+    "revision": "c989de78b8e5de8035178c22ddd19a10"
   },
   {
     "url": "static/media/roboto-latin-100.5cb7edfc.woff",

@@ -29,7 +29,7 @@ export default class forecastToggle extends React.Component {
   
   render = () => (
     <div className="d-flex justify-content-center">
-      <div className="card d-flex justify-content-center" id="details">
+      <div className="card d-flex justify-content-center" id="forecast-toggle">
         <div className="card-body">
           <div className="show-data">
             <div className="row" onClick={e => this.handleClick(e)}>
