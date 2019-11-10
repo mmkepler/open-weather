@@ -79,7 +79,7 @@ export default class Header extends React.Component {
             </div>
             <div className="col-md-6 col-sm-12">
               <form className="form-inline d-flex justify-content-center" onSubmit={e => this.handleSubmit(e)}>
-                <div className="input-group" id="input">
+                <div className="input-group d-flex justify-content-center" id="input">
                 <input placeholder="City or Zipcode" aria-label="Search" 
                 onChange={ e => this.props.onKeyup(e)} 
                 value={this.props.input} id="search-input" required/>

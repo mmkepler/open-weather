@@ -72,9 +72,9 @@ body {
 }
 
 #input {
- max-width: 230px;
  margin-top: 6px;
 }
+
 
 .navbar {
   padding: 0;
@@ -228,3 +228,4 @@ p.forecast-temp {
   color: black;
   padding: 25px;
 }
+
