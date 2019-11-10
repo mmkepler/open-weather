@@ -77,12 +77,12 @@ export default class Header extends React.Component {
               &nbsp;Weather </p>
               </a>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <form className="form-inline d-flex justify-content-center" onSubmit={e => this.handleSubmit(e)}>
-                <div className="input-group d-flex justify-content-center" id="input">
+            <div className="col-md-6 col-sm-12 d-flex justify-content-center">
+              <form className="form-inline" onSubmit={e => this.handleSubmit(e)}>
+                <div className="input-group " id="input">
                 <input placeholder="City or Zipcode" aria-label="Search" 
                 onChange={ e => this.props.onKeyup(e)} 
-                value={this.props.input} id="search-input" required/>
+                value={this.props.input} id="search-input" width="260" required/>
                   <div className="input-group-append">
                     <button className="btn"  id="search-btn" type="submit" >Search</button>
                   </div>
