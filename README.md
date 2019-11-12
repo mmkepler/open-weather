@@ -6,9 +6,9 @@ On load, if the client has allowed for geolocation services, the app will send g
 
 The client can also click on the forecast button and the app will send a request for the forecast and load it. 
 
-The Open weather Api doesn't allow for requests of current conditions and forecast, I decided to only request forcast if the client wants it so it will have a quicker initial load time. 
+The Openweather API doesn't allow for requests of current conditions and forecast, I decided to only request forecast if the client wants it so it will have a quicker initial load time. 
 
-Assets needed for loading the page are cached by a workbox serviceworker and can be loaded while offline. The client will be alerted if they may be offline.
+Assets needed for loading the page are cached by a workbox service worker and can be loaded while offline. The client will be alerted if they may be offline.
 
 I realize that weather changes by the minute, so at this time the app doesn't cache any weather data.
 
@@ -18,8 +18,10 @@ I realize that weather changes by the minute, so at this time the app doesn't ca
 *  React/ES6
 *  Redux
 *  Workbox
-*  [Open Weather](https://openweathermap.org/api) Map Api
+*  [Openweather](https://openweathermap.org/api) Map Api
+*  Webpack/Babel
 
 ### This is a work in progress. Items still being worked on
 *  Adding testing
 *  Saving a few forecasts for caching
+*  Improve performance

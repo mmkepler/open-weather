@@ -144,7 +144,7 @@ const forecastFormat = (forecastData) => {
 
 /*Routes */
 
-/* requests current weather data by city */
+/* requests current weather data by city from search input*/
 app.post ("/search" , (req, res) => {
   let tempCity = req.body.city;
   let zip = /^\d{5}$|^\d{5}-\d{4}$/;
@@ -170,7 +170,7 @@ app.post ("/search" , (req, res) => {
   });
 });
 
-/* uses gelocation data to retrieve current weather */
+/* uses gelocation data to retrieve current weather on load */
 app.post("/find", (req, res) => {
   var lat = req.body.lat;
   var lon = req.body.lon;
@@ -186,7 +186,7 @@ app.post("/find", (req, res) => {
   .catch(err => console.log("error " + err));
 });
 
-/* requests forcast data from openweathermap */
+/* requests forecast data from openweathermap */
 app.post("/forecast", (req, res) => {
   let city = req.body.city;
   const forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
@@ -199,7 +199,7 @@ axios.get(forecast_url)
   res.send(data);
 })
 .catch(err => {
-  console.log("rror retrieving forecast ", err)
+  console.log("error retrieving forecast ", err)
   res.send("Error retrieving forecast");
 });
 });
