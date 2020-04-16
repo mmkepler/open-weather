@@ -1,6 +1,8 @@
 #  Weather App
 This is a simple Single Page Application that is also a Progressive Web App. 
-The project can be seen here: [Weather App](https://warm-cliffs-12741.herokuapp.com/)
+This is the older version, the newer version uses SASS for CSS
+
+That project can be seen here: [Weather App with Sass](https://github.com/Missarachnid/open-weather-sass-redo)
 
 On load, if the client has allowed for geolocation services, the app will send geolocation data to openweather and retieve the local conditions. If not the client is alerted that geolocation is blocked. 
 
