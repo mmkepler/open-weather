@@ -20,9 +20,14 @@ export default class Header extends React.Component {
     this.props.flagError(false);
     this.props.updateError("");
     this.props.updateLoading();
+
+    let city = this.props.input.match(/^(.+?),/).trim();
+    let state = this.props.input.match(/,(.*)/).trim()
+    console.log("city ", city)
+    console.log("state ", state)
     
     //fetch data from server
-    axios.post("/search" ,{city: this.props.input})
+    axios.post("/search" ,{city: city, state_id: state})
     .then(res => {
       this.props.updateLoading();
       //if the obj returned is an error
