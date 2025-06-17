@@ -189,7 +189,7 @@ app.post("/find", (req, res) => {
 /* requests forecast data from openweathermap */
 app.post("/forecast", (req, res) => {
   let city = req.body.city;
-  const forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
+  const forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},${state_code}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
 axios.get(forecast_url)
 .then(forecast => {
   let obj = forecastFormat(forecast.data.list);
