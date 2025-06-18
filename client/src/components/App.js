@@ -79,8 +79,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
- class App extends React.Component {
-
+ class App extends React.Component {  
   componentWillMount() {
     //requests geolocation data, and sends request for local conditions to server
     if(navigator.geolocation){

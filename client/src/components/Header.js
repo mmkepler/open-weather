@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 export default class Header extends React.Component {
+
   //Search for city or zipcode
   handleSubmit = (e) => {
     e.preventDefault();
@@ -21,13 +22,15 @@ export default class Header extends React.Component {
     this.props.updateError("");
     this.props.updateLoading();
 
-    let city = this.props.input.match(/^(.+?),/).trim();
-    let state = this.props.input.match(/,(.*)/).trim()
-    console.log("city ", city)
-    console.log("state ", state)
+    //checks if input is zipcode
+    if(this.props.input.match(/\d/)){
+      zipcode = this.props.input.trim()
+    }else{
+      city = this.props.input.trim()
+    }
     
     //fetch data from server
-    axios.post("/search" ,{city: city, state_id: state})
+    axios.post("/search" ,{city: city, zipcode: zipcode})
     .then(res => {
       this.props.updateLoading();
       //if the obj returned is an error
@@ -85,7 +88,7 @@ export default class Header extends React.Component {
             <div className="col-md-6 col-sm-12 d-flex justify-content-center">
               <form className="form-inline" onSubmit={e => this.handleSubmit(e)}>
                 <div className="input-group " id="input">
-                <input placeholder="City or Zipcode" aria-label="Search" 
+                <input placeholder="City, full state or Zipcode" aria-label="Search" 
                 onChange={ e => this.props.onKeyup(e)} 
                 value={this.props.input} id="search-input" width="260" required/>
                   <div className="input-group-append">

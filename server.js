@@ -189,8 +189,16 @@ app.post("/find", (req, res) => {
 /* requests forecast data from openweathermap */
 app.post("/forecast", (req, res) => {
   let city = req.body.city;
-  let state = req.body.state
-  const forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},${state}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
+  let zipcode = req.body.zipcode
+
+  console.log("req ", req.body)
+  
+  let forecast_url;
+  if(zipcode){
+    forecast_url = `https://api.openweathermap.org/data/2.5/weather?id=${zipcode}&appid=${process.env.WEATHER_KEY}`
+  }else {
+  forecast_url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${process.env.WEATHER_KEY}&mode=json&lang=en&units=imperial`;
+}
 axios.get(forecast_url)
 .then(forecast => {
   let obj = forecastFormat(forecast.data.list);
