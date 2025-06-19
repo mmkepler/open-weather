@@ -10,6 +10,7 @@ const favicon = require("serve-favicon");
 let dttype = "dt";
 let suntype = "sun";
 
+
 app.use(cors());
 app.use(favicon(path.join(__dirname, "client", "build", "planetTitle.png")));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -215,6 +216,7 @@ axios.get(forecast_url)
 
 
 const port = process.env.PORT || 5004;
-app.listen(port, () => {
-  //console.log(`Server running on port ${port}`)
+const ipv6Address = "::"
+app.listen(port,ipv6Address, () => {
+  console.log(`Server listening on http://[${ipv6Address}]:${port}`)
 });
